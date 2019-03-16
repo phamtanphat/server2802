@@ -29,3 +29,5 @@ app.post('/chia' , (req, res) => {
 })
 
 app.listen('4000' , () => console.log("Server Started"));
+
+// mongodb+srv://abc:123@server2802-natyt.mongodb.net/test?retryWrites=true
