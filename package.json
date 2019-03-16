@@ -5,9 +5,10 @@
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
   },
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon Word.js"
   }
 }
