@@ -1,31 +1,24 @@
 const express = require('express');
+const {Word} = require('./Word');
 const {json} = require('body-parser');
 
 const app = express();
 
 app.use(json());
 
-app.get('/cong/:a/:b' , (req, res) => {
-    const {a , b} = req.params;
-    if(isNaN(a) || isNaN(b)){
-        return res.send({success : false , message : "INVALID_TYPE"});
-    }
-    if(b == 0){
-        return res.send({success : false , message : "DIVIDE_BY_ZERO"});
-    }
-    const result = +a + +b;
-    res.send({success : true , result});
+app.get('/word' , (req, res) => {
+    Word.find({})
+    .then(words => res.send({success : true , words}));
 })
-app.post('/chia' , (req, res) => {
-    const {a , b} = req.body;
-    if(isNaN(a) || isNaN(b)){
-        return res.send({success : false , message : "INVALID_TYPE"});
-    }
-    if(b == 0){
-        return res.send({success : false , message : "DIVIDE_BY_ZERO"});
-    }
-    const result = +a / +b;
-    res.send({success : true , result});
+app.post('/word' , (req, res) => {
+    const {en , vn} = req.body
+    const newWord = new Word({en , vn });
+    newWord.save()
+    .then(w => {
+        if(!w) return res.send({success : false , message : "CANNOT_ADD_WORD"})
+        res.send({success : true , w})
+    })
+    .catch(error => res.send({success : true , message : "CANNOT_ADD_WORD"}));
 })
 
 app.listen('4000' , () => console.log("Server Started"));

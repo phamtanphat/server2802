@@ -8,5 +8,25 @@ const Word = mongoose.model('Word', {
 
 });
 
-Word.find({})
-.then(words => console.log(words));
+module.exports = {Word};
+
+//SELECT
+// Word.find({})
+// .then(words => console.log(words));
+
+
+//INSERT
+// const newWord = new Word({en : 'Two' , vn : 'Hai'});
+// newWord.save()
+// .then(w => console.log(w))
+// .catch(error => console.log(error));
+
+//UPDATE
+// Word.findByIdAndUpdate('5c8cbb81954a22079ccdfc1f', {isMemorized : false} ,{new : true})
+// .then(w => console.log(w))
+// .catch(error => console.log(error));
+
+//DELETE
+// Word.findByIdAndDelete('5c8cbb81954a22079ccdfc1f')
+// .then(w => console.log(w))
+// .catch(error => console.log(error));
