@@ -28,6 +28,15 @@ app.put('/word/:_id' , (req, res) => {
     .then(w => res.send({success : true , w}))
     .catch(error => res.send({success : false , message : error.message}));
 })
+app.delete('/word/:_id' , (req, res) => {
+    const {_id} = req.params
+    Word.findByIdAndDelete(_id)
+    .then(w => {
+        if(!w) return res.send({success : false , message : 'CANNOT_DELETE'});
+        return res.send({success : true , w});
+    })
+    .catch(error => console.log(error));
+})
 
 app.listen('4000' , () => console.log("Server Started"));
 
