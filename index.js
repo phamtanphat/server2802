@@ -1,10 +1,12 @@
 const express = require('express');
 const {Word} = require('./Word');
 const {json} = require('body-parser');
+const {cors} = require("cors");
 
 const app = express();
 
 app.use(json());
+app.use(cors());
 
 app.get('/word' , (req, res) => {
     Word.find({})
